@@ -1,1 +1,0 @@
-# aula_1computa-o-nuvem
