@@ -1,0 +1,30 @@
+aula pratica do dia 26/08/2026
+
+linux:
+
+mkdir atividade-nuvem
+root@ubuntu:~$ ls
+atividade-nuvem  computacao-nuvem  filesystem
+root@ubuntu:~$ pwd
+/root
+root@ubuntu:~$ cd atividade-nuvem
+root@ubuntu:~/atividade-nuvem$ echo "Benedito e renan." > atividade-nuvem
+root@ubuntu:~/atividade-nuvem$ echo "Benedito e Renan." > atividade-nuvem.txt
+root@ubuntu:~/atividade-nuvem$ Echo "Disciplina: Computacao em nuvem." >> atividade-nuvem.txt
+Command 'Echo' not found, did you mean:
+  command 'echo' from deb coreutils (9.4-3ubuntu6.2)
+Try: apt install <deb name>
+root@ubuntu:~/atividade-nuvem$ echo "Disciplina: computacao em nuvem." >> atividade-nuvem.txt
+root@ubuntu:~/atividade-nuvem$ echo "Ambiente utilizado: Killercoda.">> atividade-nuvem.txt
+root@ubuntu:~/atividade-nuvem$ echo "Sistema operacional: Linux ubuntu." >> atividade-nuvem.txt 
+root@ubuntu:~/atividade-nuvem$ hostname
+ubuntu
+root@ubuntu:~/atividade-nuvem$ nproc 
+1
+root@ubuntu:~/atividade-nuvem$ echo "hostname: atividade nuvem." >> atividade-nuvem.txt
+root@ubuntu:~/atividade-nuvem$ cat atividade-nuvem.txt
+Benedito e Renan.
+Disciplina: computacao em nuvem.
+Ambiente utilizado: Killercoda.
+Sistema operacional: Linux ubuntu.
+hostname: atividade nuvem.
