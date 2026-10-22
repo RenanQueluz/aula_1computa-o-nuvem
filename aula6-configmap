@@ -28,3 +28,14 @@ spec:
     configMap:
       name: pagina-aula6
 EOF
+
+
+root@controlplane:~$ kubectl apply -f pod-config.yaml
+kubectl get pods
+pod/web-config configured
+NAME         READY   STATUS    RESTARTS   AGE
+web-config   1/1     Running   0 
+
+kubectl exec web-config -- wget -qO- http://localhost
+<h1>Aula 6 - Computacao em Nuvem</h1><p>Pagina carregada por ConfigMap</p>root@controlplane:~$ 
+
