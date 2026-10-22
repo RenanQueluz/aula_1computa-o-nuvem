@@ -7,3 +7,13 @@ pod "pod-dados-2" deleted from default namespace
 root@controlplane:~$ sed 's/name: pod-dados/name: pod-dados-3/' pod-dados.yaml > pod-dados-3.yaml
 root@controlplane:~$ kubectl apply -f pod-dados-3.yaml
 pod/pod-dados-3 configured
+
+
+root@controlplane:~$ kubectl exec pod-dados-3 -- ls -l /dados
+total 8
+-rw-r--r--    1 root     root            23 Oct 22 01:31 grupo.txt
+-rw-r--r--    1 root     root            27 Oct 22 01:19 mensagem.txt
+root@controlplane:~$ kubectl exec pod-dados-3 -- cat /dados/mensagem.txt
+Dado persistente da Aula 6
+root@controlplane:~$ kubectl exec pod-dados-3 -- cat /dados/grupo.txt
+Grupo: NOME 1 e NOME 2
