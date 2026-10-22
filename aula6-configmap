@@ -2,3 +2,29 @@ kubectl get nodes
 NAME           STATUS   ROLES           AGE   VERSION
 controlplane   Ready    control-plane   16d   v1.37.1
 node01         Ready    <none>          16d   v1.37.1
+
+
+kubectl create configmap pagina-aula6 \
+  --from-literal=index.html="<h1>Aula 6 - Computacao em Nuvem</h1><p>Pagina carregada por ConfigMap</p>"
+
+kubectl get configmap pagina-aula6
+configmap/pagina-aula6 created
+NAME           DATA   AGE
+pagina-aula6   1      0s
+root@controlplane:~$ cat <<'EOF' > pod-config.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: web-config
+spec:
+  containers:
+  - name: nginx
+    image: nginx:alpine
+    volumeMounts:
+    - name: pagina
+      mountPath: /usr/share/nginx/html
+  volumes:
+  - name: pagina
+    configMap:
+      name: pagina-aula6
+EOF
