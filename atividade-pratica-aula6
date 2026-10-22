@@ -2,3 +2,8 @@
 root@controlplane:~$ kubectl exec pod-dados-2 -- sh -c 'echo "Grupo: NOME 1 e NOME 2" > /dados/grupo.txt'
 root@controlplane:~$ kubectl delete pod pod-dados-2
 pod "pod-dados-2" deleted from default namespace
+
+
+root@controlplane:~$ sed 's/name: pod-dados/name: pod-dados-3/' pod-dados.yaml > pod-dados-3.yaml
+root@controlplane:~$ kubectl apply -f pod-dados-3.yaml
+pod/pod-dados-3 configured
