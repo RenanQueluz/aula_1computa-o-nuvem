@@ -81,6 +81,32 @@ root@controlplane:~$ kubectl get pv,pvc
 NAME                        CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM               STORAGECLASS   VOLUMEATTRIBUTESCLASS   REASON   AGE
 persistentvolume/pv-aula6   100Mi      RWO            Retain           Bound    default/pvc-aula6   manual         <unset>                          3m33s
 
+
+
+root@controlplane:~$ cat <<'EOF' > pod-dados.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-dados
+spec:
+  containers:
+  - name: app
+    image: busybox:1.36
+    command: ['sh','-c','sleep 3600']
+    volumeMounts:
+    - name: dados
+      mountPath: /dados
+  volumes:
+  - name: dados
+    persistentVolumeClaim:
+      claimName: pvc-aula6
+EOF
+root@controlplane:~$ kubectl apply -f pod-dados.yaml
+pod/pod-dados created
+root@controlplane:~$ kubectl get pod pod-dados
+NAME        READY   STATUS    RESTARTS   AGE
+pod-dados   1/1     Running   0          13s
+
 NAME                              STATUS   VOLUME     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
 persistentvolumeclaim/pvc-aula6   Bound    pv-aula6   100Mi      RWO            manual         <unset>                 44s
 
