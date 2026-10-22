@@ -17,3 +17,26 @@ root@controlplane:~$ kubectl exec pod-dados-3 -- cat /dados/mensagem.txt
 Dado persistente da Aula 6
 root@controlplane:~$ kubectl exec pod-dados-3 -- cat /dados/grupo.txt
 Grupo: NOME 1 e NOME 2
+
+
+perguntas:
+1. Por que não devemos depender do armazenamento interno de um Pod?
+
+rs:O Pod pode ser excluído ou recriado, e os dados armazenados apenas no seu sistema de arquivos podem ser perdidos.
+Por isso, utilizamos volumes persistentes para manter os dados.
+
+2. Qual é o papel de um ConfigMap?
+
+rs:O ConfigMap armazena configurações não sigilosas, como parâmetros, nomes de serviços 
+e variáveis de configuração, separando essas informações do código da aplicação.
+
+3. Qual é a diferença entre PV e PVC?
+rs:PV (PersistentVolume): representa um recurso de armazenamento disponibilizado para uso no Kubernetes.
+PVC (PersistentVolumeClaim): é uma solicitação de armazenamento feita por uma aplicação ou usuário.
+
+
+4. O que provou, na prática, que nosso dado era persistente?
+
+rs: A criação do arquivo grupo.txt, a exclusão do Pod original e a criação de um novo Pod utilizando a mesma PVC. 
+Ao verificar que os arquivos mensagem.txt e grupo.txt continuavam disponíveis, comprovamos a persistência dos dados.
+
