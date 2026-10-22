@@ -59,4 +59,28 @@ persistentvolume/pv-aula6 created
 root@controlplane:~$ kubectl get pv
 NAME       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS      CLAIM   STORAGECLASS   VOLUMEATTRIBUTESCLASS   REASON   AGE
 pv-aula6   100Mi      RWO            Retain           Available           manual         <unset>                          35s
+              35s
+
+
+root@controlplane:~$ cat <<'EOF' > pvc.yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-aula6
+spec:
+  storageClassName: manual
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 50Mi
+EOF
+root@controlplane:~$ kubectl apply -f pvc.yaml
+persistentvolumeclaim/pvc-aula6 created
+root@controlplane:~$ kubectl get pv,pvc
+NAME                        CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM               STORAGECLASS   VOLUMEATTRIBUTESCLASS   REASON   AGE
+persistentvolume/pv-aula6   100Mi      RWO            Retain           Bound    default/pvc-aula6   manual         <unset>                          3m33s
+
+NAME                              STATUS   VOLUME     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+persistentvolumeclaim/pvc-aula6   Bound    pv-aula6   100Mi      RWO            manual         <unset>                 44s
 
