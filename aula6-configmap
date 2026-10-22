@@ -110,3 +110,8 @@ pod-dados   1/1     Running   0          13s
 NAME                              STATUS   VOLUME     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
 persistentvolumeclaim/pvc-aula6   Bound    pv-aula6   100Mi      RWO            manual         <unset>                 44s
 
+
+root@controlplane:~$ kubectl exec pod-dados -- sh -c 'echo "Dado persistente da Aula 6" > /dados/mensagem.txt'
+root@controlplane:~$ kubectl exec pod-dados -- cat /dados/mensagem.txt
+Dado persistente da Aula 6
+
