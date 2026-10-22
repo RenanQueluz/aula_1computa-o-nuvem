@@ -1,0 +1,4 @@
+kubectl get nodes
+NAME           STATUS   ROLES           AGE   VERSION
+controlplane   Ready    control-plane   16d   v1.37.1
+node01         Ready    <none>          16d   v1.37.1
