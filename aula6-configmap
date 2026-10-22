@@ -119,6 +119,15 @@ NAME         READY   STATUS    RESTARTS   AGE
 web-config   1/1     Running   0          24m
 
 
+root@controlplane:~$ sed 's/name: pod-dados/name: pod-dados-2/' pod-dados.yaml > pod-dados-2.yaml
+root@controlplane:~$ kubectl apply -f pod-dados-2.yaml
+pod/pod-dados-2 created
+root@controlplane:~$ kubectl get pod pod-dados-2
+NAME          READY   STATUS    RESTARTS   AGE
+pod-dados-2   1/1     Running   0          19s
+root@controlplane:~$ kubectl exec pod-dados-2 -- cat /dados/mensagem.txt
+Dado persistente da Aula 6
+
 
 root@controlplane:~$ kubectl exec pod-dados -- sh -c 'echo "Dado persistente da Aula 6" > /dados/mensagem.txt'
 root@controlplane:~$ kubectl exec pod-dados -- cat /dados/mensagem.txt
