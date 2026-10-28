@@ -1,0 +1,14 @@
+PASSO 1
+
+root@controlplane:~$ kubectl get nodes 
+NAME           STATUS   ROLES           AGE   VERSION
+controlplane   Ready    control-plane   22d   v1.37.1
+node01         Ready    <none>          22d   v1.37.1
+
+root@controlplane:~$ kubectl create namespace aula7
+namespace/aula7 created
+
+root@controlplane:~$ kubectl get namespace aula7
+NAME    STATUS   AGE
+aula7   Active   16s
+
