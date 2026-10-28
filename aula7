@@ -112,5 +112,28 @@ kubectl auth can-i delete pods -n aula7 \
 no
 
 
+PASSO 9
+
+RESPONDENDO PERGUNTAS:
+
+1. O que muda ao usar Secret em vez de ConfigMap neste exemplo?
+
+rs:O Secret é utilizado para armazenar informações sensíveis, como senhas e credenciais, enquanto o ConfigMap é utilizado para configurações comuns da
+aplicação. Neste exemplo, o Secret armazena a senha `exemplo-123` e a disponibiliza para o Pod por meio de um arquivo.
+
+2. Qual objeto define get e list? Qual objeto entrega essas permissões à conta?
+
+rs:A Role `consulta-pods` define as permissões `get` e `list` para consultar os Pods. O RoleBinding `vinculo-leitor` associa essa Role à 
+ServiceAccount `leitor`, permitindo que ela utilize essas permissões no namespace `aula7`.
+
+3. Por que delete pods retornou no?
+
+rs: Porque a Role `consulta-pods` permite apenas as ações `get` e `list`. Como a permissão `delete` não foi 
+concedida, a ServiceAccount `leitor` não pode excluir Pods.
+
+4. Uma conta com essa Role poderia ler Secrets? Justifiquem.
+
+rs: Não. A Role `consulta-pods` concede permissões apenas para consultar Pods. 
+Como não existem permissões específicas para o recurso `secrets`, a ServiceAccount `leitor` não pode ler Secrets utilizando essa Role.
 
 
