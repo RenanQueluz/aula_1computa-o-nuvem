@@ -98,3 +98,13 @@ Events:
   Normal   Created    32s               kubelet            spec.containers{nginx}: Container created
   Normal   Started    32s               kubelet            spec.containers{nginx}: Container started
   Warning  Unhealthy  0s (x7 over 30s)  kubelet            spec.containers{nginx}: Readiness probe failed: HTTP probe failed with statuscode: 404
+
+
+PASSO 4 TORNANDO UMA APLICAÇÃO PRONTA:
+
+root@controlplane:~$ kubectl -n aula8 exec web-saude -- sh -c \
+  'echo OK > /usr/share/nginx/html/health'
+
+root@controlplane:~$ kubectl -n aula8 get pod web-saude -w
+NAME        READY   STATUS    RESTARTS   AGE
+web-saude   1/1     Running   0          4m46s
