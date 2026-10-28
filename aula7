@@ -60,6 +60,14 @@ senha
 root@controlplane:~$ kubectl -n aula7 exec leitor-secret -- cat /segredos/senha
 exemplo-123root@controlplane:~$ 
 
+PASSO 5
+root@controlplane:~$ kubectl -n aula7 create serviceaccount leitor
+serviceaccount/leitor created
+
+root@controlplane:~$ kubectl -n aula7 get serviceaccount leitor
+NAME     AGE
+leitor   24s
+
 
 
 
