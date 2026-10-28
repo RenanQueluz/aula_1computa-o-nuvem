@@ -68,6 +68,20 @@ root@controlplane:~$ kubectl -n aula7 get serviceaccount leitor
 NAME     AGE
 leitor   24s
 
+PASSO 6
+root@controlplane:~$ kubectl -n aula7 create role consulta-pods \
+  --verb=get,list --resource=pods
+role.rbac.authorization.k8s.io/consulta-pods created
+
+root@controlplane:~$ kubectl -n aula7 describe role consulta-pods
+Name:         consulta-pods
+Labels:       <none>
+Annotations:  <none>
+PolicyRule:
+  Resources  Non-Resource URLs  Resource Names  Verbs
+  ---------  -----------------  --------------  -----
+  pods       []                 []              [get list]
+
 
 
 
