@@ -12,3 +12,19 @@ root@controlplane:~$ kubectl get namespace aula7
 NAME    STATUS   AGE
 aula7   Active   16s
 
+
+PASSO 2:
+root@controlplane:~$ kubectl -n aula7 create secret generic credencial-demo \
+  --from-literal=senha=exemplo-123
+secret/credencial-demo created
+
+root@controlplane:~$ 
+kubectl -n aula7 get secret credencial-demo
+NAME              TYPE     DATA   AGE
+credencial-demo   Opaque   1      24s
+
+
+
+
+
+
