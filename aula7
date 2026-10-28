@@ -83,6 +83,24 @@ PolicyRule:
   pods       []                 []              [get list]
 
 
+PASSO 7
+root@controlplane:~$ kubectl -n aula7 create rolebinding vinculo-leitor \
+  --role=consulta-pods --serviceaccount=aula7:leitor
+rolebinding.rbac.authorization.k8s.io/vinculo-leitor created
+
+root@controlplane:~$ kubectl -n aula7 describe rolebinding vinculo-leitor
+Name:         vinculo-leitor
+Labels:       <none>
+Annotations:  <none>
+Role:
+  Kind:  Role
+  Name:  consulta-pods
+Subjects:
+  Kind            Name    Namespace
+  ----            ----    ---------
+  ServiceAccount  leitor  aula7
+
+
 
 
 
