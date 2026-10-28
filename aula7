@@ -47,6 +47,20 @@ spec:
 EOF
 
 
+PASSO 4
+root@controlplane:~$ kubectl apply -f pod-secret.yaml
+pod/leitor-secret created
+
+root@controlplane:~$ kubectl -n aula7 wait --for=condition=Ready pod/leitor-secret --timeout=90s
+pod/leitor-secret condition met
+
+root@controlplane:~$ kubectl -n aula7 exec leitor-secret -- ls /segredos
+senha
+
+root@controlplane:~$ kubectl -n aula7 exec leitor-secret -- cat /segredos/senha
+exemplo-123root@controlplane:~$ 
+
+
 
 
 
