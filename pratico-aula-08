@@ -1,0 +1,40 @@
+Pergunta 1
+Se liveness está boa e readiness falha, reiniciar ajuda neste caso?
+
+rs: Não necessariamente. Se a Liveness está funcionando, significa que a aplicação continua viva e executando. O problema está na Readiness,
+que indica que o Pod ainda não está preparado para receber requisições.
+Reiniciar não resolveria necessariamente o problema, principalmente se a causa for uma configuração incorreta ou um endpoint inexistente.
+
+Pergunta 2
+Que risco existiria em enviar tráfego ao Pod enquanto /health responde 404?
+
+rs:O erro HTTP 404 significa que o recurso solicitado não foi encontrado.
+Se o Kubernetes estiver utilizando esse endpoint para verificar a Readiness, o Pod poderá ser considerado indisponível.
+Se mesmo assim receber tráfego, existe o risco de os usuários receberem erros ou de a aplicação não conseguir atender corretamente às requisições.
+
+Pergunta 3
+
+Onde você olharia primeiro para investigar: get, describe ou logs? Por quê?
+
+rs: Eu começaria pelo kubectl get pods, para verificar rapidamente a situação dos Pods.
+Depois utilizaria kubectl describe pod para verificar os detalhes, as configurações das probes e os eventos relacionados às falhas.
+
+
+TABELA:
+
+Verificação	               Resultado	                         Decisão
+------------------------------------------------------------------------------------------------------------
+Liveness	                Funcionando	                    Não reiniciar o Pod inicialmente.
+Readiness	                Falhando	                     Investigar por que o Pod não está pronto.
+Endpoint /health	        HTTP 404	                     Verificar se o caminho está correto e existe na aplicação.
+Estado do Pod	     Pode estar Running, mas não Ready	    Evitar encaminhar tráfego até a correção.
+Investigação	      Utilizar get, describe e logs            	Identificar a origem do problema.
+
+
+EXPLICAÇÃO:
+Não seria necessário reiniciar o Pod imediatamente, pois a Liveness está funcionando e indica que a aplicação
+continua ativa. O problema está na Readiness, que falha porque o endpoint `/health` retorna erro 404. Encaminhar tráfego
+para esse Pod poderia causar falhas nas requisições dos usuários. A investigação deve começar com `kubectl get pods`, 
+seguida de `kubectl describe pod` e `kubectl logs` para identificar e corrigir a causa do problema.
+
+
