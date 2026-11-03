@@ -108,3 +108,17 @@ root@controlplane:~$ kubectl -n aula8 exec web-saude -- sh -c \
 root@controlplane:~$ kubectl -n aula8 get pod web-saude -w
 NAME        READY   STATUS    RESTARTS   AGE
 web-saude   1/1     Running   0          4m46s
+
+
+PASSO 5:
+
+root@controlplane:~$ kubectl -n aula8 exec web-saude -- \
+  wget -qO- http://localhost/health
+wget: server returned error: HTTP/1.1 404 Not Found
+command terminated with exit code 1
+
+root@controlplane:~$ kubectl -n aula8 get pod web-saude
+NAME        READY   STATUS    RESTARTS   AGE
+web-saude   0/1     Running   0          3m43s
+
+
