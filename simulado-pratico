@@ -1,0 +1,18 @@
+ETAPA 1 PREPARAÇÃO DO CLAUSTER:
+
+root@controlplane:~$ kubectl get nodes
+NAME           STATUS   ROLES           AGE     VERSION
+controlplane   Ready    control-plane   6d11h   v1.37.1
+node01         Ready    <none>          6d11h   v1.37.1
+root@controlplane:~$ kubectl creat namespace simulado-nuvem 
+
+root@controlplane:~$ kubectl get namespace simulado-nuvem
+Error from server (NotFound): namespaces "simulado-nuvem" not found
+root@controlplane:~$ ^C
+root@controlplane:~$ kubectl create namespace "simulado-nuvem"
+namespace/simulado-nuvem created
+
+root@controlplane:~$ kubectl get namespace "simulado-nuvem"
+NAME             STATUS   AGE
+simulado-nuvem   Active   53s
+
