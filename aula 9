@@ -148,3 +148,21 @@ kubectl -n aula9 exec "$POD" -- \
 <h1>Versao 1</h1>
 
 
+RESPONDENDO QUESTÕES:
+
+1. O que desencadeou o novo rollout?
+A atualização da variável de ambiente VERSAO, de 1 para 2, utilizando o comando kubectl set env. 
+Essa alteração modificou a configuração do Deployment e desencadeou um novo rollout.
+
+2. Por que o Service continuou com o mesmo nome?
+Porque o Service é um recurso independente do Deployment. Ele continua utilizando o mesmo nome e selecionando os Pods por meio dos Labels,
+mesmo quando os Pods são substituídos durante a atualização.
+
+3. Qual a contribuição da readiness para a atualização?
+A Readiness Probe verifica se os Pods estão prontos para receber requisições. Isso permite que o Kubernetes aguarde a disponibilidade 
+dos novos Pods antes de retirar os antigos, evitando interrupções durante a atualização.
+
+4. O que você precisa conferir após um rollback?
+É necessário verificar se o Deployment voltou à revisão anterior, se os Pods estão funcionando corretamente e 
+se a aplicação realmente está executando a versão anterior.
+
