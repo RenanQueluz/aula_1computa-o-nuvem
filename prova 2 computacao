@@ -1,0 +1,109 @@
+NOME: RENAN AUGUSTO ULYAS QUELUZ       4 SEMESTRE 
+
+
+1.FUNDAMENTOS DA COMPUTAÇÃO EM NUVEM
+
+QUESTÃO 1 QUAL A DIFERENÇA ENTRE Iaas e SaaS? cite um exemplo de utilização de cada modelo
+resposta: a principal diferença é que o IaaS(infraestrutura como serviço) é um modelo de nuvem aonde se
+gerencia e administra o SO (sistema operacional) firewall, dados e códigos um exemplo é o google cloud, ja o SaaS(software como serviço) é 
+um modelo em nuvem aonde ja é disponibilizado os serviços finais para cliente final, ele não precisa administrar e gerenciar nada
+pois ja vem tudo pronto como por exemplo google driver
+
+QUESTÃO 2 UMA EMPRESA UTILIZA SERVIDORES PRÓPRIOS E T E TAMBEM RECURSOS DE UM PROVEDOR DE NUVEM PÚBLICA. QUAL MODELO DE IMPLANTAÇÃO  EM NUVEM
+ESSA EMPRESA UTILIZA?
+resposta: a empresa utiliza um modelo de nuvem hibrida (hybrid cloud)
+
+QUESTÃO 3 QUAL A PRINCIPAL DIFERENÇA DE UMA MAQUINA VIRTUAL E UM CONTAINER ?
+resposta: uma maquina virtual um computador virtual com o seu próprio sistema operacional que pode rodar em uma maquina fisica mesmo 
+se o sistema operacinal ser diferente da virtual, ja um container é um ambiente do docker aonde ele rodas todas as aplicações baseadas no que foi descrita na imagem docker
+
+
+
+2.EXECUÇÃO DA APLICAÇÃO COM O DOCKER
+
+OBJETIVO: EXECUTAR UM SERVIDOR NGINX ULTILIZANDO DOCKER, VERIFICAR SEU FUNCIONAMENTO E PERSONALIZA A PAGINA WEB
+
+EVIDENCIA 1 - CONTÊINER EM EXECUÇÃO
+root@controlplane:~$ docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+
+EVIDENCIA 2 PAGINA PERSONALIZADA
+root@controlplane:~$ curl http://localhost:8090
+curl: (7) Failed to connect to localhost port 8090 after 0 ms: Couldn't connect to server
+
+
+
+EXECUÇÃO DA APLICAÇÃO NO KUBERNET
+
+EVIDENCIA 3 EXECUÇÃO DA APLICAÇAO KUBERNETES
+root@controlplane:~$ kubectl get pods
+No resources found in default namespace.
+
+
+4.ESCALABILIDADE E AUTORRECUPERAÇÃO
+EVIDENCIA 4
+root@controlplane:~$ kubectl scale deployment comunicado-web --replicas=3
+Error from server (NotFound): deployments.apps "comunicado-web" not found
+
+root@controlplane:~$ kubectl get pods    
+No resources found in default namespace.
+
+EVIDENCIA 5
+root@controlplane:~$ kubectl delete pod comunicado
+Error from server (NotFound): pods "comunicado" not found
+
+root@controlplane:~$ kubectl get pods
+No resources found in default namespace.
+
+
+5.DISPONIBILIZAÇÃO DA APLICAÇÃO
+root@controlplane:~$ kubectl run teste --image=curl --rm it --restart=Never --curl http://comunicado-service
+error: unknown flag: --curl
+See 'kubectl run --help' for usage.
+
+
+
+
+6 INTERPRETAÇÃO DOS RESULTADOS
+
+QUESTÃO 1 QUAL A DIFERENÇA ENTRE UMA IMAGEM DOCKER E UM CONTAINER EM EXECUÇÃO?
+resposta: uma imagem docer geralmente se coloca versão das linguagens, ferramentas, arquivos de códigos para serem guardadas, 
+ja um container é responsavel por executar essas aplicação basedas nas nas informações que a imagem docker possui
+
+QUESTÃO 2 QUAL É A FUNÇÃO DE UM DEPLOYMENT NO KUBERNETE
+resposta: um deployment tem como função fazer as configuração dos pods, como por exemplo a quantidade de pods que iram rodar simultaniamente
+e que fazer em caso de falhas nas aplicações
+
+
+QUESTÃO 3 O QUE ACONTECEU QUANDO VOCÊ EXCLUIU UM POD? POR QUE ISSO ACONTECEU?
+respostas: ele automaticamente inseriu outro pod com a mesmas configurações anteriores, isso acontece por que na definição do deployment isso é configurado em caso de erros 
+ou exclusão dos pods 
+
+
+QUESTÃO 4 QUAL É A FINALIDADE DE UM SERVICE NO KUBERNETES
+resposta:é usado para guardar e proteger arquivos e dados sensiveis que não podem ser acessadas por qualquer um 
+
+
+7.CONCLUSÃO
+resposta: durante estudos e provas sobre o docker e kubernetes aprendi que essas tecnologias são muito importantes para o desenvolvimento final e entrega do sistema 
+para garantir segurança, ótimo desempenho e facilidades para o desenvolvedor manter todas os arquivos e aplicações funcionando corretamente na nuvem 
+o docker por exemplo sendo uma ótima plataforma de código aberto, para empacotar, inplantar e principalmente executar todas as aplicações vindas do containers e
+para finalizar o kubernet como um "diretor" garantindo que tudo funcione em perfietas condições e garantir o funcionamento em casos especifico que podem ocerrer como 
+falhas nos containers, aumentar o numero de pods para altas demandas e requisições de uma só vez.
+
+
+8.indentificação da entrega
+ALUNO: RENAN AUGUSTO ULYAS QUELUZ
+LINK DO REPOSITÓRIO:
+
+
+
+
+
+
+
+
+
+
+
