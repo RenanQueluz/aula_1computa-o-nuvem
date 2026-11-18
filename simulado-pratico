@@ -1,18 +1,19 @@
-ETAPA 1 PREPARAÇÃO DO CLAUSTER:
+ETAPA 1 FUNDAMENTOS DA COMPUTAÇÃO EM NUVEM
 
-root@controlplane:~$ kubectl get nodes
-NAME           STATUS   ROLES           AGE     VERSION
-controlplane   Ready    control-plane   6d11h   v1.37.1
-node01         Ready    <none>          6d11h   v1.37.1
-root@controlplane:~$ kubectl creat namespace simulado-nuvem 
+1.QUAL A DIFERENÇA ENTRE Iaas E SaaS:
+resposta: a diferença entre esses dois esta principalmente na estrutura, pois o Iaas( infraestrutura como
+serviço) é um modelo de nuvem na qual o usuario deve administra, gerenciar códigos e sistema operacional,
+ja o SaaS (software como serviço) é um modelo em nuvem com serviço pronto ao usuario final sem precisar
+gerenciar sistema operacinal ou código.
 
-root@controlplane:~$ kubectl get namespace simulado-nuvem
-Error from server (NotFound): namespaces "simulado-nuvem" not found
-root@controlplane:~$ ^C
-root@controlplane:~$ kubectl create namespace "simulado-nuvem"
-namespace/simulado-nuvem created
+2.UMA EMPRESA UTILIZA SERVIDORES PRÓPRIOS E TAMBEM RECURSOS DE UM PROVEDOR DE NUVEM PUBLICA. QUAL MODELO DE 
+IMPLANTAÇÃO EM NUVEM ESSA EMPRESA UTILIZA
+resposta: modelo de nuvem hibrida (hybrid cloud)
 
-root@controlplane:~$ kubectl get namespace "simulado-nuvem"
-NAME             STATUS   AGE
-simulado-nuvem   Active   53s
+3.QUAL A PRINCIPAL DIFERENÇA ENTRE MAQUINA VIRTUAL E CONTAINER:
+resposta: uma maquina virtual ela oferece uma estrutura totalmente remota podendo acessar um sistema operacional diferente no qual possui em maquina fisica, ja um container é aonde fica armazenados todas as
+pastas, arquivos e códigos sendo utilizados para simplificar na atualização, alteração e versionamento
+
+
+
 
